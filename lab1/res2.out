@@ -1,0 +1,1800 @@
+[testcase_1]
+==========================
+     1	#include <stdio.h>
+     2	
+     3	int main()
+     4	{
+     5		return 0;
+     6	}
+
+--------------------------
+[parser output]
+
+Error type A at Line 1: Mysterious characters '#'
+Error type B at Line 1: syntax error
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+
+==========================
+
+
+[testcase_10]
+==========================
+     1	int main()
+     2	{
+     3		int a = 0123;
+     4		int b = 123;
+     5		int c = 0765;
+     6		int d = 765;
+     7	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : main
+    │ ├─LP
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ ├─Def (3)
+      │ │ ├─Specifier (3)
+      │ │ │ └─TYPE
+      │ │ ├─DecList (3)
+      │ │ │ └─Dec (3)
+      │ │ │   ├─VarDec (3)
+      │ │ │   │ └─ID : a
+      │ │ │   ├─ASSIGNOP
+      │ │ │   └─Exp (3)
+      │ │ │     └─INT : 83
+      │ │ └─SEMI
+      │ └─DefList (4)
+      │   ├─Def (4)
+      │   │ ├─Specifier (4)
+      │   │ │ └─TYPE
+      │   │ ├─DecList (4)
+      │   │ │ └─Dec (4)
+      │   │ │   ├─VarDec (4)
+      │   │ │   │ └─ID : b
+      │   │ │   ├─ASSIGNOP
+      │   │ │   └─Exp (4)
+      │   │ │     └─INT : 123
+      │   │ └─SEMI
+      │   └─DefList (5)
+      │     ├─Def (5)
+      │     │ ├─Specifier (5)
+      │     │ │ └─TYPE
+      │     │ ├─DecList (5)
+      │     │ │ └─Dec (5)
+      │     │ │   ├─VarDec (5)
+      │     │ │   │ └─ID : c
+      │     │ │   ├─ASSIGNOP
+      │     │ │   └─Exp (5)
+      │     │ │     └─INT : 501
+      │     │ └─SEMI
+      │     └─DefList (6)
+      │       └─Def (6)
+      │         ├─Specifier (6)
+      │         │ └─TYPE
+      │         ├─DecList (6)
+      │         │ └─Dec (6)
+      │         │   ├─VarDec (6)
+      │         │   │ └─ID : d
+      │         │   ├─ASSIGNOP
+      │         │   └─Exp (6)
+      │         │     └─INT : 765
+      │         └─SEMI
+      └─RC
+
+==========================
+
+
+[testcase_11]
+==========================
+     1	int main()
+     2	{
+     3		int a = 0x3F;
+     4		int b = 0x05Ab;
+     5		int c = 0X2b;
+     6		int d = 0XcDfE170;
+     7	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : main
+    │ ├─LP
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ ├─Def (3)
+      │ │ ├─Specifier (3)
+      │ │ │ └─TYPE
+      │ │ ├─DecList (3)
+      │ │ │ └─Dec (3)
+      │ │ │   ├─VarDec (3)
+      │ │ │   │ └─ID : a
+      │ │ │   ├─ASSIGNOP
+      │ │ │   └─Exp (3)
+      │ │ │     └─INT : 63
+      │ │ └─SEMI
+      │ └─DefList (4)
+      │   ├─Def (4)
+      │   │ ├─Specifier (4)
+      │   │ │ └─TYPE
+      │   │ ├─DecList (4)
+      │   │ │ └─Dec (4)
+      │   │ │   ├─VarDec (4)
+      │   │ │   │ └─ID : b
+      │   │ │   ├─ASSIGNOP
+      │   │ │   └─Exp (4)
+      │   │ │     └─INT : 1451
+      │   │ └─SEMI
+      │   └─DefList (5)
+      │     ├─Def (5)
+      │     │ ├─Specifier (5)
+      │     │ │ └─TYPE
+      │     │ ├─DecList (5)
+      │     │ │ └─Dec (5)
+      │     │ │   ├─VarDec (5)
+      │     │ │   │ └─ID : c
+      │     │ │   ├─ASSIGNOP
+      │     │ │   └─Exp (5)
+      │     │ │     └─INT : 43
+      │     │ └─SEMI
+      │     └─DefList (6)
+      │       └─Def (6)
+      │         ├─Specifier (6)
+      │         │ └─TYPE
+      │         ├─DecList (6)
+      │         │ └─Dec (6)
+      │         │   ├─VarDec (6)
+      │         │   │ └─ID : d
+      │         │   ├─ASSIGNOP
+      │         │   └─Exp (6)
+      │         │     └─INT : 215998832
+      │         └─SEMI
+      └─RC
+
+==========================
+
+
+[testcase_12]
+==========================
+     1	int main()
+     2	{
+     3		float a = 1.05e-4;
+     4		float b = 012.348E+5;
+     5		float c = 09.e007;
+     6	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : main
+    │ ├─LP
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ ├─Def (3)
+      │ │ ├─Specifier (3)
+      │ │ │ └─TYPE
+      │ │ ├─DecList (3)
+      │ │ │ └─Dec (3)
+      │ │ │   ├─VarDec (3)
+      │ │ │   │ └─ID : a
+      │ │ │   ├─ASSIGNOP
+      │ │ │   └─Exp (3)
+      │ │ │     └─FLOAT : 0.000105
+      │ │ └─SEMI
+      │ └─DefList (4)
+      │   ├─Def (4)
+      │   │ ├─Specifier (4)
+      │   │ │ └─TYPE
+      │   │ ├─DecList (4)
+      │   │ │ └─Dec (4)
+      │   │ │   ├─VarDec (4)
+      │   │ │   │ └─ID : b
+      │   │ │   ├─ASSIGNOP
+      │   │ │   └─Exp (4)
+      │   │ │     └─FLOAT : 1234800.000000
+      │   │ └─SEMI
+      │   └─DefList (5)
+      │     └─Def (5)
+      │       ├─Specifier (5)
+      │       │ └─TYPE
+      │       ├─DecList (5)
+      │       │ └─Dec (5)
+      │       │   ├─VarDec (5)
+      │       │   │ └─ID : c
+      │       │   ├─ASSIGNOP
+      │       │   └─Exp (5)
+      │       │     └─FLOAT : 90000000.000000
+      │       └─SEMI
+      └─RC
+
+==========================
+
+
+[testcase_13]
+==========================
+     1	int fibonacci(int n)
+     2	{
+     3		int a = 0, b = 1, i = 0;
+     4		
+     5		while (i < n)
+     6		{
+     7	//		int c = a + b;
+     8			write(b);
+     9	//		a = b;
+    10	//		b = c;
+    11		}
+    12	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : fibonacci
+    │ ├─LP
+    │ ├─VarList (1)
+    │ │ └─VarList (1)
+    │ │   ├─Specifier (1)
+    │ │   │ └─TYPE
+    │ │   └─VarDec (1)
+    │ │     └─ID : n
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ └─Def (3)
+      │   ├─Specifier (3)
+      │   │ └─TYPE
+      │   ├─DecList (3)
+      │   │ ├─Dec (3)
+      │   │ │ ├─VarDec (3)
+      │   │ │ │ └─ID : a
+      │   │ │ ├─ASSIGNOP
+      │   │ │ └─Exp (3)
+      │   │ │   └─INT : 0
+      │   │ ├─COMMA
+      │   │ └─DecList (3)
+      │   │   ├─Dec (3)
+      │   │   │ ├─VarDec (3)
+      │   │   │ │ └─ID : b
+      │   │   │ ├─ASSIGNOP
+      │   │   │ └─Exp (3)
+      │   │   │   └─INT : 1
+      │   │   ├─COMMA
+      │   │   └─DecList (3)
+      │   │     └─Dec (3)
+      │   │       ├─VarDec (3)
+      │   │       │ └─ID : i
+      │   │       ├─ASSIGNOP
+      │   │       └─Exp (3)
+      │   │         └─INT : 0
+      │   └─SEMI
+      ├─StmtList (5)
+      │ └─Stmt (5)
+      │   ├─WHILE
+      │   ├─LP
+      │   ├─Exp (5)
+      │   │ ├─Exp (5)
+      │   │ │ └─ID : i
+      │   │ ├─RELOP
+      │   │ └─Exp (5)
+      │   │   └─ID : n
+      │   ├─RP
+      │   └─Stmt (6)
+      │     └─CompSt (6)
+      │       ├─LC
+      │       ├─StmtList (8)
+      │       │ └─Stmt (8)
+      │       │   ├─Exp (8)
+      │       │   │ ├─ID : write
+      │       │   │ ├─LP
+      │       │   │ ├─Args (8)
+      │       │   │ │ └─Exp (8)
+      │       │   │ │   └─ID : b
+      │       │   │ └─RP
+      │       │   └─SEMI
+      │       └─RC
+      └─RC
+
+==========================
+
+
+[testcase_14]
+==========================
+     1	int main()
+     2	{
+     3		/*	int a[10], i = 0, j = 0; 
+     4		while (i < 10)
+     5		{
+     6			a[i] = 50 - i * 2;
+     7			i = i + 1;
+     8		}*/
+     9		i = 0;
+    10		/*
+    11		while (i < 10)
+    12		{
+    13			j = 0;
+    14			while (j < i)
+    15			{
+    16				if (a[i] < a[j])
+    17				{
+    18					int t = a[i];
+    19					a[i] = a[j];
+    20					a[j] = t;
+    21				}
+    22				j = j + 1;
+    23			}
+    24			i = i + 1;
+    25		}
+    26		*/
+    27		i = 0;
+    28		/*	while (i < 10)
+    29		{
+    30			write(a[i]);
+    31			i = i + 1;
+    32		}
+    33	}
+--------------------------
+[parser output]
+
+Error type B at Line 33: Not a legal multiline comment
+Error type B at Line 33: syntax error
+Discription: Error ExtDef.
+
+==========================
+
+
+[testcase_2]
+==========================
+     1	int main()
+     2	{
+     3		int k;
+     4		if (k % 2 == 0) return 1;
+     5		return 0;
+     6	}
+
+--------------------------
+[parser output]
+
+Error type A at Line 4: Mysterious characters '%'
+Error type B at Line 4: syntax error
+Discription: Wrong expression.
+
+==========================
+
+
+[testcase_3]
+==========================
+     1	struct V_stack test_stack == 1;
+     2	
+     3	int push_addr(struct V_stack stack, struct I_codeList code, int d)
+     4	{
+     5		int i = 0;
+     6		struct V_stack st = malloc(sizeof(st));
+     7		struct V_stack original_stack = stack;
+     8		int extra_d = (d * 3) / (4 + 2) * (d -= 5);
+     9		
+    10		if (st == NULL)
+    11		{
+    12			exit(-1;
+    13		}
+    14		st.kind = ADDR;
+    15		st.u.ret_addr = code;
+    16		
+    17		while (i < extra_d-1)
+    18		{
+    19			stack = stack.next;
+    20			array[4+i] = array[5 */ 12];
+    21			i = i + 1;
+    22		}
+    23		
+    24		st.next = stack.next;
+    25		stack.next = st;
+    26	
+    27		return original_stack;
+    28	}
+
+--------------------------
+[parser output]
+
+Error type B at Line 1: syntax error
+Discription: Error ExtDef.
+Error type B at Line 8: syntax error
+Discription: Error ExtDef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+
+==========================
+
+
+[testcase_4]
+==========================
+     1	int main(int argc, float argv[3])
+     2	{
+     3		
+     4		if (argc != 2)
+     5		{
+     6			exit(0);
+     7		}
+     8	
+     9		struct FILE f;
+    10		if (!f)
+    11		{
+    12			perror(argv[1]);
+    13			return f++;
+    14		}
+    15		
+    16		while (i=1;) i = i + 1;
+    17	}
+
+--------------------------
+[parser output]
+
+Error type B at Line 9: syntax error
+Discription: Error ExtDef.
+Error type B at Line 10: syntax error
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+Discription: error Extdef.
+
+==========================
+
+
+[testcase_5]
+==========================
+     1	int type_compare
+     2	(struct S_type t1, struct S_type      t2)
+     3	{
+     4		if (t1 == t2) 
+     5	return 0;
+     6		if (t1 == NULL ||                t2 == NULL) return 
+     7	-1;
+     8	
+     9		if (t1->kind != 
+    10													t2.kind) return -1;
+    11													
+    12		if (t1.kind.kind2 == t2.kind.kind1) return -1;
+    13		
+    14		while (t1.next != NULL) {
+    15			t1 = t1.next;
+    16		}
+    17	
+
+--------------------------
+[parser output]
+
+Error type B at Line 9: syntax error
+Discription: Wrong expression.
+Error type B at Line 18: syntax error
+Discription: Error ExtDef.
+
+==========================
+
+
+[testcase_6]
+==========================
+     1	int fibonacci(int n)
+     2	{
+     3		int a = 0, b = 1, i = 0;
+     4		
+     5		while (i < n)
+     6		{
+     7			int c = a + b;
+     8			write(b);
+     9			a = b;
+    10			b = c;
+    11		}
+    12	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : fibonacci
+    │ ├─LP
+    │ ├─VarList (1)
+    │ │ └─VarList (1)
+    │ │   ├─Specifier (1)
+    │ │   │ └─TYPE
+    │ │   └─VarDec (1)
+    │ │     └─ID : n
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ └─Def (3)
+      │   ├─Specifier (3)
+      │   │ └─TYPE
+      │   ├─DecList (3)
+      │   │ ├─Dec (3)
+      │   │ │ ├─VarDec (3)
+      │   │ │ │ └─ID : a
+      │   │ │ ├─ASSIGNOP
+      │   │ │ └─Exp (3)
+      │   │ │   └─INT : 0
+      │   │ ├─COMMA
+      │   │ └─DecList (3)
+      │   │   ├─Dec (3)
+      │   │   │ ├─VarDec (3)
+      │   │   │ │ └─ID : b
+      │   │   │ ├─ASSIGNOP
+      │   │   │ └─Exp (3)
+      │   │   │   └─INT : 1
+      │   │   ├─COMMA
+      │   │   └─DecList (3)
+      │   │     └─Dec (3)
+      │   │       ├─VarDec (3)
+      │   │       │ └─ID : i
+      │   │       ├─ASSIGNOP
+      │   │       └─Exp (3)
+      │   │         └─INT : 0
+      │   └─SEMI
+      ├─StmtList (5)
+      │ └─Stmt (5)
+      │   ├─WHILE
+      │   ├─LP
+      │   ├─Exp (5)
+      │   │ ├─Exp (5)
+      │   │ │ └─ID : i
+      │   │ ├─RELOP
+      │   │ └─Exp (5)
+      │   │   └─ID : n
+      │   ├─RP
+      │   └─Stmt (6)
+      │     └─CompSt (6)
+      │       ├─LC
+      │       ├─DefList (7)
+      │       │ └─Def (7)
+      │       │   ├─Specifier (7)
+      │       │   │ └─TYPE
+      │       │   ├─DecList (7)
+      │       │   │ └─Dec (7)
+      │       │   │   ├─VarDec (7)
+      │       │   │   │ └─ID : c
+      │       │   │   ├─ASSIGNOP
+      │       │   │   └─Exp (7)
+      │       │   │     ├─Exp (7)
+      │       │   │     │ └─ID : a
+      │       │   │     ├─PLUS
+      │       │   │     └─Exp (7)
+      │       │   │       └─ID : b
+      │       │   └─SEMI
+      │       ├─StmtList (8)
+      │       │ ├─Stmt (8)
+      │       │ │ ├─Exp (8)
+      │       │ │ │ ├─ID : write
+      │       │ │ │ ├─LP
+      │       │ │ │ ├─Args (8)
+      │       │ │ │ │ └─Exp (8)
+      │       │ │ │ │   └─ID : b
+      │       │ │ │ └─RP
+      │       │ │ └─SEMI
+      │       │ └─StmtList (9)
+      │       │   ├─Stmt (9)
+      │       │   │ ├─Exp (9)
+      │       │   │ │ ├─Exp (9)
+      │       │   │ │ │ └─ID : a
+      │       │   │ │ ├─ASSIGNOP
+      │       │   │ │ └─Exp (9)
+      │       │   │ │   └─ID : b
+      │       │   │ └─SEMI
+      │       │   └─StmtList (10)
+      │       │     └─Stmt (10)
+      │       │       ├─Exp (10)
+      │       │       │ ├─Exp (10)
+      │       │       │ │ └─ID : b
+      │       │       │ ├─ASSIGNOP
+      │       │       │ └─Exp (10)
+      │       │       │   └─ID : c
+      │       │       └─SEMI
+      │       └─RC
+      └─RC
+
+==========================
+
+
+[testcase_7]
+==========================
+     1	int main()
+     2	{
+     3		int a[10], i = 0, j = 0;
+     4		while (i < 10)
+     5		{
+     6			a[i] = 50 - i * 2;
+     7			i = i + 1;
+     8		}
+     9		i = 0;
+    10		while (i < 10)
+    11		{
+    12			j = 0;
+    13			while (j < i)
+    14			{
+    15				if (a[i] < a[j])
+    16				{
+    17					int t = a[i];
+    18					a[i] = a[j];
+    19					a[j] = t;
+    20				}
+    21				j = j + 1;
+    22			}
+    23			i = i + 1;
+    24		}
+    25		i = 0;
+    26		while (i < 10)
+    27		{
+    28			write(a[i]);
+    29			i = i + 1;
+    30		}
+    31	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : main
+    │ ├─LP
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ └─Def (3)
+      │   ├─Specifier (3)
+      │   │ └─TYPE
+      │   ├─DecList (3)
+      │   │ ├─Dec (3)
+      │   │ │ └─VarDec (3)
+      │   │ │   ├─VarDec (3)
+      │   │ │   │ └─ID : a
+      │   │ │   ├─LB
+      │   │ │   ├─INT : 10
+      │   │ │   └─RB
+      │   │ ├─COMMA
+      │   │ └─DecList (3)
+      │   │   ├─Dec (3)
+      │   │   │ ├─VarDec (3)
+      │   │   │ │ └─ID : i
+      │   │   │ ├─ASSIGNOP
+      │   │   │ └─Exp (3)
+      │   │   │   └─INT : 0
+      │   │   ├─COMMA
+      │   │   └─DecList (3)
+      │   │     └─Dec (3)
+      │   │       ├─VarDec (3)
+      │   │       │ └─ID : j
+      │   │       ├─ASSIGNOP
+      │   │       └─Exp (3)
+      │   │         └─INT : 0
+      │   └─SEMI
+      ├─StmtList (4)
+      │ ├─Stmt (4)
+      │ │ ├─WHILE
+      │ │ ├─LP
+      │ │ ├─Exp (4)
+      │ │ │ ├─Exp (4)
+      │ │ │ │ └─ID : i
+      │ │ │ ├─RELOP
+      │ │ │ └─Exp (4)
+      │ │ │   └─INT : 10
+      │ │ ├─RP
+      │ │ └─Stmt (5)
+      │ │   └─CompSt (5)
+      │ │     ├─LC
+      │ │     ├─StmtList (6)
+      │ │     │ ├─Stmt (6)
+      │ │     │ │ ├─Exp (6)
+      │ │     │ │ │ ├─Exp (6)
+      │ │     │ │ │ │ ├─Exp (6)
+      │ │     │ │ │ │ │ └─ID : a
+      │ │     │ │ │ │ ├─LB
+      │ │     │ │ │ │ ├─Exp (6)
+      │ │     │ │ │ │ │ └─ID : i
+      │ │     │ │ │ │ └─RB
+      │ │     │ │ │ ├─ASSIGNOP
+      │ │     │ │ │ └─Exp (6)
+      │ │     │ │ │   ├─Exp (6)
+      │ │     │ │ │   │ └─INT : 50
+      │ │     │ │ │   ├─MINUS
+      │ │     │ │ │   └─Exp (6)
+      │ │     │ │ │     ├─Exp (6)
+      │ │     │ │ │     │ └─ID : i
+      │ │     │ │ │     ├─STAR
+      │ │     │ │ │     └─Exp (6)
+      │ │     │ │ │       └─INT : 2
+      │ │     │ │ └─SEMI
+      │ │     │ └─StmtList (7)
+      │ │     │   └─Stmt (7)
+      │ │     │     ├─Exp (7)
+      │ │     │     │ ├─Exp (7)
+      │ │     │     │ │ └─ID : i
+      │ │     │     │ ├─ASSIGNOP
+      │ │     │     │ └─Exp (7)
+      │ │     │     │   ├─Exp (7)
+      │ │     │     │   │ └─ID : i
+      │ │     │     │   ├─PLUS
+      │ │     │     │   └─Exp (7)
+      │ │     │     │     └─INT : 1
+      │ │     │     └─SEMI
+      │ │     └─RC
+      │ └─StmtList (9)
+      │   ├─Stmt (9)
+      │   │ ├─Exp (9)
+      │   │ │ ├─Exp (9)
+      │   │ │ │ └─ID : i
+      │   │ │ ├─ASSIGNOP
+      │   │ │ └─Exp (9)
+      │   │ │   └─INT : 0
+      │   │ └─SEMI
+      │   └─StmtList (10)
+      │     ├─Stmt (10)
+      │     │ ├─WHILE
+      │     │ ├─LP
+      │     │ ├─Exp (10)
+      │     │ │ ├─Exp (10)
+      │     │ │ │ └─ID : i
+      │     │ │ ├─RELOP
+      │     │ │ └─Exp (10)
+      │     │ │   └─INT : 10
+      │     │ ├─RP
+      │     │ └─Stmt (11)
+      │     │   └─CompSt (11)
+      │     │     ├─LC
+      │     │     ├─StmtList (12)
+      │     │     │ ├─Stmt (12)
+      │     │     │ │ ├─Exp (12)
+      │     │     │ │ │ ├─Exp (12)
+      │     │     │ │ │ │ └─ID : j
+      │     │     │ │ │ ├─ASSIGNOP
+      │     │     │ │ │ └─Exp (12)
+      │     │     │ │ │   └─INT : 0
+      │     │     │ │ └─SEMI
+      │     │     │ └─StmtList (13)
+      │     │     │   ├─Stmt (13)
+      │     │     │   │ ├─WHILE
+      │     │     │   │ ├─LP
+      │     │     │   │ ├─Exp (13)
+      │     │     │   │ │ ├─Exp (13)
+      │     │     │   │ │ │ └─ID : j
+      │     │     │   │ │ ├─RELOP
+      │     │     │   │ │ └─Exp (13)
+      │     │     │   │ │   └─ID : i
+      │     │     │   │ ├─RP
+      │     │     │   │ └─Stmt (14)
+      │     │     │   │   └─CompSt (14)
+      │     │     │   │     ├─LC
+      │     │     │   │     ├─StmtList (15)
+      │     │     │   │     │ ├─Stmt (15)
+      │     │     │   │     │ │ ├─IF
+      │     │     │   │     │ │ ├─LP
+      │     │     │   │     │ │ ├─Exp (15)
+      │     │     │   │     │ │ │ ├─Exp (15)
+      │     │     │   │     │ │ │ │ ├─Exp (15)
+      │     │     │   │     │ │ │ │ │ └─ID : a
+      │     │     │   │     │ │ │ │ ├─LB
+      │     │     │   │     │ │ │ │ ├─Exp (15)
+      │     │     │   │     │ │ │ │ │ └─ID : i
+      │     │     │   │     │ │ │ │ └─RB
+      │     │     │   │     │ │ │ ├─RELOP
+      │     │     │   │     │ │ │ └─Exp (15)
+      │     │     │   │     │ │ │   ├─Exp (15)
+      │     │     │   │     │ │ │   │ └─ID : a
+      │     │     │   │     │ │ │   ├─LB
+      │     │     │   │     │ │ │   ├─Exp (15)
+      │     │     │   │     │ │ │   │ └─ID : j
+      │     │     │   │     │ │ │   └─RB
+      │     │     │   │     │ │ ├─RP
+      │     │     │   │     │ │ └─Stmt (16)
+      │     │     │   │     │ │   └─CompSt (16)
+      │     │     │   │     │ │     ├─LC
+      │     │     │   │     │ │     ├─DefList (17)
+      │     │     │   │     │ │     │ └─Def (17)
+      │     │     │   │     │ │     │   ├─Specifier (17)
+      │     │     │   │     │ │     │   │ └─TYPE
+      │     │     │   │     │ │     │   ├─DecList (17)
+      │     │     │   │     │ │     │   │ └─Dec (17)
+      │     │     │   │     │ │     │   │   ├─VarDec (17)
+      │     │     │   │     │ │     │   │   │ └─ID : t
+      │     │     │   │     │ │     │   │   ├─ASSIGNOP
+      │     │     │   │     │ │     │   │   └─Exp (17)
+      │     │     │   │     │ │     │   │     ├─Exp (17)
+      │     │     │   │     │ │     │   │     │ └─ID : a
+      │     │     │   │     │ │     │   │     ├─LB
+      │     │     │   │     │ │     │   │     ├─Exp (17)
+      │     │     │   │     │ │     │   │     │ └─ID : i
+      │     │     │   │     │ │     │   │     └─RB
+      │     │     │   │     │ │     │   └─SEMI
+      │     │     │   │     │ │     ├─StmtList (18)
+      │     │     │   │     │ │     │ ├─Stmt (18)
+      │     │     │   │     │ │     │ │ ├─Exp (18)
+      │     │     │   │     │ │     │ │ │ ├─Exp (18)
+      │     │     │   │     │ │     │ │ │ │ ├─Exp (18)
+      │     │     │   │     │ │     │ │ │ │ │ └─ID : a
+      │     │     │   │     │ │     │ │ │ │ ├─LB
+      │     │     │   │     │ │     │ │ │ │ ├─Exp (18)
+      │     │     │   │     │ │     │ │ │ │ │ └─ID : i
+      │     │     │   │     │ │     │ │ │ │ └─RB
+      │     │     │   │     │ │     │ │ │ ├─ASSIGNOP
+      │     │     │   │     │ │     │ │ │ └─Exp (18)
+      │     │     │   │     │ │     │ │ │   ├─Exp (18)
+      │     │     │   │     │ │     │ │ │   │ └─ID : a
+      │     │     │   │     │ │     │ │ │   ├─LB
+      │     │     │   │     │ │     │ │ │   ├─Exp (18)
+      │     │     │   │     │ │     │ │ │   │ └─ID : j
+      │     │     │   │     │ │     │ │ │   └─RB
+      │     │     │   │     │ │     │ │ └─SEMI
+      │     │     │   │     │ │     │ └─StmtList (19)
+      │     │     │   │     │ │     │   └─Stmt (19)
+      │     │     │   │     │ │     │     ├─Exp (19)
+      │     │     │   │     │ │     │     │ ├─Exp (19)
+      │     │     │   │     │ │     │     │ │ ├─Exp (19)
+      │     │     │   │     │ │     │     │ │ │ └─ID : a
+      │     │     │   │     │ │     │     │ │ ├─LB
+      │     │     │   │     │ │     │     │ │ ├─Exp (19)
+      │     │     │   │     │ │     │     │ │ │ └─ID : j
+      │     │     │   │     │ │     │     │ │ └─RB
+      │     │     │   │     │ │     │     │ ├─ASSIGNOP
+      │     │     │   │     │ │     │     │ └─Exp (19)
+      │     │     │   │     │ │     │     │   └─ID : t
+      │     │     │   │     │ │     │     └─SEMI
+      │     │     │   │     │ │     └─RC
+      │     │     │   │     │ └─StmtList (21)
+      │     │     │   │     │   └─Stmt (21)
+      │     │     │   │     │     ├─Exp (21)
+      │     │     │   │     │     │ ├─Exp (21)
+      │     │     │   │     │     │ │ └─ID : j
+      │     │     │   │     │     │ ├─ASSIGNOP
+      │     │     │   │     │     │ └─Exp (21)
+      │     │     │   │     │     │   ├─Exp (21)
+      │     │     │   │     │     │   │ └─ID : j
+      │     │     │   │     │     │   ├─PLUS
+      │     │     │   │     │     │   └─Exp (21)
+      │     │     │   │     │     │     └─INT : 1
+      │     │     │   │     │     └─SEMI
+      │     │     │   │     └─RC
+      │     │     │   └─StmtList (23)
+      │     │     │     └─Stmt (23)
+      │     │     │       ├─Exp (23)
+      │     │     │       │ ├─Exp (23)
+      │     │     │       │ │ └─ID : i
+      │     │     │       │ ├─ASSIGNOP
+      │     │     │       │ └─Exp (23)
+      │     │     │       │   ├─Exp (23)
+      │     │     │       │   │ └─ID : i
+      │     │     │       │   ├─PLUS
+      │     │     │       │   └─Exp (23)
+      │     │     │       │     └─INT : 1
+      │     │     │       └─SEMI
+      │     │     └─RC
+      │     └─StmtList (25)
+      │       ├─Stmt (25)
+      │       │ ├─Exp (25)
+      │       │ │ ├─Exp (25)
+      │       │ │ │ └─ID : i
+      │       │ │ ├─ASSIGNOP
+      │       │ │ └─Exp (25)
+      │       │ │   └─INT : 0
+      │       │ └─SEMI
+      │       └─StmtList (26)
+      │         └─Stmt (26)
+      │           ├─WHILE
+      │           ├─LP
+      │           ├─Exp (26)
+      │           │ ├─Exp (26)
+      │           │ │ └─ID : i
+      │           │ ├─RELOP
+      │           │ └─Exp (26)
+      │           │   └─INT : 10
+      │           ├─RP
+      │           └─Stmt (27)
+      │             └─CompSt (27)
+      │               ├─LC
+      │               ├─StmtList (28)
+      │               │ ├─Stmt (28)
+      │               │ │ ├─Exp (28)
+      │               │ │ │ ├─ID : write
+      │               │ │ │ ├─LP
+      │               │ │ │ ├─Args (28)
+      │               │ │ │ │ └─Exp (28)
+      │               │ │ │ │   ├─Exp (28)
+      │               │ │ │ │   │ └─ID : a
+      │               │ │ │ │   ├─LB
+      │               │ │ │ │   ├─Exp (28)
+      │               │ │ │ │   │ └─ID : i
+      │               │ │ │ │   └─RB
+      │               │ │ │ └─RP
+      │               │ │ └─SEMI
+      │               │ └─StmtList (29)
+      │               │   └─Stmt (29)
+      │               │     ├─Exp (29)
+      │               │     │ ├─Exp (29)
+      │               │     │ │ └─ID : i
+      │               │     │ ├─ASSIGNOP
+      │               │     │ └─Exp (29)
+      │               │     │   ├─Exp (29)
+      │               │     │   │ └─ID : i
+      │               │     │   ├─PLUS
+      │               │     │   └─Exp (29)
+      │               │     │     └─INT : 1
+      │               │     └─SEMI
+      │               └─RC
+      └─RC
+
+==========================
+
+
+[testcase_8]
+==========================
+     1	struct Complex
+     2	{
+     3		float real, image;
+     4	};
+     5	
+     6	struct Complex multiply(struct Complex x, struct Complex y)
+     7	{
+     8	    struct Complex z;
+     9	    z.real = x.real * y.real - x.image * y.image;
+    10	    z.image = x.real * y.image + y.real * x.image;
+    11	    return z;
+    12	}
+    13	
+    14	struct Complex divide(struct Complex x, struct Complex y)
+    15	{
+    16		struct Complex z;
+    17		float abs_sqr = y.real * y.real + y.image * y.image;
+    18		z.real = (x.real * y.real + x.image * y.image) / abs_sqr;
+    19		z.image = (y.real * x.image - x.real * y.image) / abs_sqr;
+    20		return z;
+    21	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  ├─ExtDef (1)
+  │ ├─Specifier (1)
+  │ │ └─StructSpecifier (1)
+  │ │   ├─STRUCT
+  │ │   ├─OptTag (1)
+  │ │   │ └─ID : Complex
+  │ │   ├─LC
+  │ │   ├─DefList (3)
+  │ │   │ └─Def (3)
+  │ │   │   ├─Specifier (3)
+  │ │   │   │ └─TYPE
+  │ │   │   ├─DecList (3)
+  │ │   │   │ ├─Dec (3)
+  │ │   │   │ │ └─VarDec (3)
+  │ │   │   │ │   └─ID : real
+  │ │   │   │ ├─COMMA
+  │ │   │   │ └─DecList (3)
+  │ │   │   │   └─Dec (3)
+  │ │   │   │     └─VarDec (3)
+  │ │   │   │       └─ID : image
+  │ │   │   └─SEMI
+  │ │   └─RC
+  │ └─SEMI
+  └─ExtDefList (6)
+    ├─ExtDef (6)
+    │ ├─Specifier (6)
+    │ │ └─StructSpecifier (6)
+    │ │   ├─STRUCT
+    │ │   └─Tag (6)
+    │ │     └─ID : Complex
+    │ ├─FunDec (6)
+    │ │ ├─ID : multiply
+    │ │ ├─LP
+    │ │ ├─VarList (6)
+    │ │ │ ├─VarList (6)
+    │ │ │ │ ├─Specifier (6)
+    │ │ │ │ │ └─StructSpecifier (6)
+    │ │ │ │ │   ├─STRUCT
+    │ │ │ │ │   └─Tag (6)
+    │ │ │ │ │     └─ID : Complex
+    │ │ │ │ └─VarDec (6)
+    │ │ │ │   └─ID : x
+    │ │ │ ├─COMMA
+    │ │ │ └─VarList (6)
+    │ │ │   └─VarList (6)
+    │ │ │     ├─Specifier (6)
+    │ │ │     │ └─StructSpecifier (6)
+    │ │ │     │   ├─STRUCT
+    │ │ │     │   └─Tag (6)
+    │ │ │     │     └─ID : Complex
+    │ │ │     └─VarDec (6)
+    │ │ │       └─ID : y
+    │ │ └─RP
+    │ └─CompSt (7)
+    │   ├─LC
+    │   ├─DefList (8)
+    │   │ └─Def (8)
+    │   │   ├─Specifier (8)
+    │   │   │ └─StructSpecifier (8)
+    │   │   │   ├─STRUCT
+    │   │   │   └─Tag (8)
+    │   │   │     └─ID : Complex
+    │   │   ├─DecList (8)
+    │   │   │ └─Dec (8)
+    │   │   │   └─VarDec (8)
+    │   │   │     └─ID : z
+    │   │   └─SEMI
+    │   ├─StmtList (9)
+    │   │ ├─Stmt (9)
+    │   │ │ ├─Exp (9)
+    │   │ │ │ ├─Exp (9)
+    │   │ │ │ │ ├─Exp (9)
+    │   │ │ │ │ │ └─ID : z
+    │   │ │ │ │ ├─DOT
+    │   │ │ │ │ └─ID : real
+    │   │ │ │ ├─ASSIGNOP
+    │   │ │ │ └─Exp (9)
+    │   │ │ │   ├─Exp (9)
+    │   │ │ │   │ ├─Exp (9)
+    │   │ │ │   │ │ ├─Exp (9)
+    │   │ │ │   │ │ │ └─ID : x
+    │   │ │ │   │ │ ├─DOT
+    │   │ │ │   │ │ └─ID : real
+    │   │ │ │   │ ├─STAR
+    │   │ │ │   │ └─Exp (9)
+    │   │ │ │   │   ├─Exp (9)
+    │   │ │ │   │   │ └─ID : y
+    │   │ │ │   │   ├─DOT
+    │   │ │ │   │   └─ID : real
+    │   │ │ │   ├─MINUS
+    │   │ │ │   └─Exp (9)
+    │   │ │ │     ├─Exp (9)
+    │   │ │ │     │ ├─Exp (9)
+    │   │ │ │     │ │ └─ID : x
+    │   │ │ │     │ ├─DOT
+    │   │ │ │     │ └─ID : image
+    │   │ │ │     ├─STAR
+    │   │ │ │     └─Exp (9)
+    │   │ │ │       ├─Exp (9)
+    │   │ │ │       │ └─ID : y
+    │   │ │ │       ├─DOT
+    │   │ │ │       └─ID : image
+    │   │ │ └─SEMI
+    │   │ └─StmtList (10)
+    │   │   ├─Stmt (10)
+    │   │   │ ├─Exp (10)
+    │   │   │ │ ├─Exp (10)
+    │   │   │ │ │ ├─Exp (10)
+    │   │   │ │ │ │ └─ID : z
+    │   │   │ │ │ ├─DOT
+    │   │   │ │ │ └─ID : image
+    │   │   │ │ ├─ASSIGNOP
+    │   │   │ │ └─Exp (10)
+    │   │   │ │   ├─Exp (10)
+    │   │   │ │   │ ├─Exp (10)
+    │   │   │ │   │ │ ├─Exp (10)
+    │   │   │ │   │ │ │ └─ID : x
+    │   │   │ │   │ │ ├─DOT
+    │   │   │ │   │ │ └─ID : real
+    │   │   │ │   │ ├─STAR
+    │   │   │ │   │ └─Exp (10)
+    │   │   │ │   │   ├─Exp (10)
+    │   │   │ │   │   │ └─ID : y
+    │   │   │ │   │   ├─DOT
+    │   │   │ │   │   └─ID : image
+    │   │   │ │   ├─PLUS
+    │   │   │ │   └─Exp (10)
+    │   │   │ │     ├─Exp (10)
+    │   │   │ │     │ ├─Exp (10)
+    │   │   │ │     │ │ └─ID : y
+    │   │   │ │     │ ├─DOT
+    │   │   │ │     │ └─ID : real
+    │   │   │ │     ├─STAR
+    │   │   │ │     └─Exp (10)
+    │   │   │ │       ├─Exp (10)
+    │   │   │ │       │ └─ID : x
+    │   │   │ │       ├─DOT
+    │   │   │ │       └─ID : image
+    │   │   │ └─SEMI
+    │   │   └─StmtList (11)
+    │   │     └─Stmt (11)
+    │   │       ├─RETURN
+    │   │       ├─Exp (11)
+    │   │       │ └─ID : z
+    │   │       └─SEMI
+    │   └─RC
+    └─ExtDefList (14)
+      └─ExtDef (14)
+        ├─Specifier (14)
+        │ └─StructSpecifier (14)
+        │   ├─STRUCT
+        │   └─Tag (14)
+        │     └─ID : Complex
+        ├─FunDec (14)
+        │ ├─ID : divide
+        │ ├─LP
+        │ ├─VarList (14)
+        │ │ ├─VarList (14)
+        │ │ │ ├─Specifier (14)
+        │ │ │ │ └─StructSpecifier (14)
+        │ │ │ │   ├─STRUCT
+        │ │ │ │   └─Tag (14)
+        │ │ │ │     └─ID : Complex
+        │ │ │ └─VarDec (14)
+        │ │ │   └─ID : x
+        │ │ ├─COMMA
+        │ │ └─VarList (14)
+        │ │   └─VarList (14)
+        │ │     ├─Specifier (14)
+        │ │     │ └─StructSpecifier (14)
+        │ │     │   ├─STRUCT
+        │ │     │   └─Tag (14)
+        │ │     │     └─ID : Complex
+        │ │     └─VarDec (14)
+        │ │       └─ID : y
+        │ └─RP
+        └─CompSt (15)
+          ├─LC
+          ├─DefList (16)
+          │ ├─Def (16)
+          │ │ ├─Specifier (16)
+          │ │ │ └─StructSpecifier (16)
+          │ │ │   ├─STRUCT
+          │ │ │   └─Tag (16)
+          │ │ │     └─ID : Complex
+          │ │ ├─DecList (16)
+          │ │ │ └─Dec (16)
+          │ │ │   └─VarDec (16)
+          │ │ │     └─ID : z
+          │ │ └─SEMI
+          │ └─DefList (17)
+          │   └─Def (17)
+          │     ├─Specifier (17)
+          │     │ └─TYPE
+          │     ├─DecList (17)
+          │     │ └─Dec (17)
+          │     │   ├─VarDec (17)
+          │     │   │ └─ID : abs_sqr
+          │     │   ├─ASSIGNOP
+          │     │   └─Exp (17)
+          │     │     ├─Exp (17)
+          │     │     │ ├─Exp (17)
+          │     │     │ │ ├─Exp (17)
+          │     │     │ │ │ └─ID : y
+          │     │     │ │ ├─DOT
+          │     │     │ │ └─ID : real
+          │     │     │ ├─STAR
+          │     │     │ └─Exp (17)
+          │     │     │   ├─Exp (17)
+          │     │     │   │ └─ID : y
+          │     │     │   ├─DOT
+          │     │     │   └─ID : real
+          │     │     ├─PLUS
+          │     │     └─Exp (17)
+          │     │       ├─Exp (17)
+          │     │       │ ├─Exp (17)
+          │     │       │ │ └─ID : y
+          │     │       │ ├─DOT
+          │     │       │ └─ID : image
+          │     │       ├─STAR
+          │     │       └─Exp (17)
+          │     │         ├─Exp (17)
+          │     │         │ └─ID : y
+          │     │         ├─DOT
+          │     │         └─ID : image
+          │     └─SEMI
+          ├─StmtList (18)
+          │ ├─Stmt (18)
+          │ │ ├─Exp (18)
+          │ │ │ ├─Exp (18)
+          │ │ │ │ ├─Exp (18)
+          │ │ │ │ │ └─ID : z
+          │ │ │ │ ├─DOT
+          │ │ │ │ └─ID : real
+          │ │ │ ├─ASSIGNOP
+          │ │ │ └─Exp (18)
+          │ │ │   ├─Exp (18)
+          │ │ │   │ ├─LP
+          │ │ │   │ ├─Exp (18)
+          │ │ │   │ │ ├─Exp (18)
+          │ │ │   │ │ │ ├─Exp (18)
+          │ │ │   │ │ │ │ ├─Exp (18)
+          │ │ │   │ │ │ │ │ └─ID : x
+          │ │ │   │ │ │ │ ├─DOT
+          │ │ │   │ │ │ │ └─ID : real
+          │ │ │   │ │ │ ├─STAR
+          │ │ │   │ │ │ └─Exp (18)
+          │ │ │   │ │ │   ├─Exp (18)
+          │ │ │   │ │ │   │ └─ID : y
+          │ │ │   │ │ │   ├─DOT
+          │ │ │   │ │ │   └─ID : real
+          │ │ │   │ │ ├─PLUS
+          │ │ │   │ │ └─Exp (18)
+          │ │ │   │ │   ├─Exp (18)
+          │ │ │   │ │   │ ├─Exp (18)
+          │ │ │   │ │   │ │ └─ID : x
+          │ │ │   │ │   │ ├─DOT
+          │ │ │   │ │   │ └─ID : image
+          │ │ │   │ │   ├─STAR
+          │ │ │   │ │   └─Exp (18)
+          │ │ │   │ │     ├─Exp (18)
+          │ │ │   │ │     │ └─ID : y
+          │ │ │   │ │     ├─DOT
+          │ │ │   │ │     └─ID : image
+          │ │ │   │ └─RP
+          │ │ │   ├─DIV
+          │ │ │   └─Exp (18)
+          │ │ │     └─ID : abs_sqr
+          │ │ └─SEMI
+          │ └─StmtList (19)
+          │   ├─Stmt (19)
+          │   │ ├─Exp (19)
+          │   │ │ ├─Exp (19)
+          │   │ │ │ ├─Exp (19)
+          │   │ │ │ │ └─ID : z
+          │   │ │ │ ├─DOT
+          │   │ │ │ └─ID : image
+          │   │ │ ├─ASSIGNOP
+          │   │ │ └─Exp (19)
+          │   │ │   ├─Exp (19)
+          │   │ │   │ ├─LP
+          │   │ │   │ ├─Exp (19)
+          │   │ │   │ │ ├─Exp (19)
+          │   │ │   │ │ │ ├─Exp (19)
+          │   │ │   │ │ │ │ ├─Exp (19)
+          │   │ │   │ │ │ │ │ └─ID : y
+          │   │ │   │ │ │ │ ├─DOT
+          │   │ │   │ │ │ │ └─ID : real
+          │   │ │   │ │ │ ├─STAR
+          │   │ │   │ │ │ └─Exp (19)
+          │   │ │   │ │ │   ├─Exp (19)
+          │   │ │   │ │ │   │ └─ID : x
+          │   │ │   │ │ │   ├─DOT
+          │   │ │   │ │ │   └─ID : image
+          │   │ │   │ │ ├─MINUS
+          │   │ │   │ │ └─Exp (19)
+          │   │ │   │ │   ├─Exp (19)
+          │   │ │   │ │   │ ├─Exp (19)
+          │   │ │   │ │   │ │ └─ID : x
+          │   │ │   │ │   │ ├─DOT
+          │   │ │   │ │   │ └─ID : real
+          │   │ │   │ │   ├─STAR
+          │   │ │   │ │   └─Exp (19)
+          │   │ │   │ │     ├─Exp (19)
+          │   │ │   │ │     │ └─ID : y
+          │   │ │   │ │     ├─DOT
+          │   │ │   │ │     └─ID : image
+          │   │ │   │ └─RP
+          │   │ │   ├─DIV
+          │   │ │   └─Exp (19)
+          │   │ │     └─ID : abs_sqr
+          │   │ └─SEMI
+          │   └─StmtList (20)
+          │     └─Stmt (20)
+          │       ├─RETURN
+          │       ├─Exp (20)
+          │       │ └─ID : z
+          │       └─SEMI
+          └─RC
+
+==========================
+
+
+[testcase_9]
+==========================
+     1	int matrix_mul(int a[100][100], int b[100][100])
+     2	{
+     3		int c[100][100], i=0;
+     4		while (i < 100)
+     5		{
+     6			int _j = 0;
+     7			while (_j < 100)
+     8			{
+     9				int k = 0;
+    10				c[i][_j] = 0;
+    11				while (k < 100)
+    12				{
+    13					c[i][_j] = c[i][_j] + a[i][k] * b[k][_j];
+    14					k = k + 1;
+    15				}
+    16				_j = _j + 1;
+    17			}
+    18			i = i + 1;
+    19		}
+    20		
+    21		i = 0;
+    22		while (i < 100)
+    23		{
+    24			int _j = 0;
+    25			while (_j < 100) write(c[i][_j]);
+    26		}
+    27		
+    28		return 0;
+    29	}
+
+--------------------------
+[parser output]
+
+Program (1)
+└─ExtDefList (1)
+  └─ExtDef (1)
+    ├─Specifier (1)
+    │ └─TYPE
+    ├─FunDec (1)
+    │ ├─ID : matrix_mul
+    │ ├─LP
+    │ ├─VarList (1)
+    │ │ ├─VarList (1)
+    │ │ │ ├─Specifier (1)
+    │ │ │ │ └─TYPE
+    │ │ │ └─VarDec (1)
+    │ │ │   ├─VarDec (1)
+    │ │ │   │ ├─VarDec (1)
+    │ │ │   │ │ └─ID : a
+    │ │ │   │ ├─LB
+    │ │ │   │ ├─INT : 100
+    │ │ │   │ └─RB
+    │ │ │   ├─LB
+    │ │ │   ├─INT : 100
+    │ │ │   └─RB
+    │ │ ├─COMMA
+    │ │ └─VarList (1)
+    │ │   └─VarList (1)
+    │ │     ├─Specifier (1)
+    │ │     │ └─TYPE
+    │ │     └─VarDec (1)
+    │ │       ├─VarDec (1)
+    │ │       │ ├─VarDec (1)
+    │ │       │ │ └─ID : b
+    │ │       │ ├─LB
+    │ │       │ ├─INT : 100
+    │ │       │ └─RB
+    │ │       ├─LB
+    │ │       ├─INT : 100
+    │ │       └─RB
+    │ └─RP
+    └─CompSt (2)
+      ├─LC
+      ├─DefList (3)
+      │ └─Def (3)
+      │   ├─Specifier (3)
+      │   │ └─TYPE
+      │   ├─DecList (3)
+      │   │ ├─Dec (3)
+      │   │ │ └─VarDec (3)
+      │   │ │   ├─VarDec (3)
+      │   │ │   │ ├─VarDec (3)
+      │   │ │   │ │ └─ID : c
+      │   │ │   │ ├─LB
+      │   │ │   │ ├─INT : 100
+      │   │ │   │ └─RB
+      │   │ │   ├─LB
+      │   │ │   ├─INT : 100
+      │   │ │   └─RB
+      │   │ ├─COMMA
+      │   │ └─DecList (3)
+      │   │   └─Dec (3)
+      │   │     ├─VarDec (3)
+      │   │     │ └─ID : i
+      │   │     ├─ASSIGNOP
+      │   │     └─Exp (3)
+      │   │       └─INT : 0
+      │   └─SEMI
+      ├─StmtList (4)
+      │ ├─Stmt (4)
+      │ │ ├─WHILE
+      │ │ ├─LP
+      │ │ ├─Exp (4)
+      │ │ │ ├─Exp (4)
+      │ │ │ │ └─ID : i
+      │ │ │ ├─RELOP
+      │ │ │ └─Exp (4)
+      │ │ │   └─INT : 100
+      │ │ ├─RP
+      │ │ └─Stmt (5)
+      │ │   └─CompSt (5)
+      │ │     ├─LC
+      │ │     ├─DefList (6)
+      │ │     │ └─Def (6)
+      │ │     │   ├─Specifier (6)
+      │ │     │   │ └─TYPE
+      │ │     │   ├─DecList (6)
+      │ │     │   │ └─Dec (6)
+      │ │     │   │   ├─VarDec (6)
+      │ │     │   │   │ └─ID : _j
+      │ │     │   │   ├─ASSIGNOP
+      │ │     │   │   └─Exp (6)
+      │ │     │   │     └─INT : 0
+      │ │     │   └─SEMI
+      │ │     ├─StmtList (7)
+      │ │     │ ├─Stmt (7)
+      │ │     │ │ ├─WHILE
+      │ │     │ │ ├─LP
+      │ │     │ │ ├─Exp (7)
+      │ │     │ │ │ ├─Exp (7)
+      │ │     │ │ │ │ └─ID : _j
+      │ │     │ │ │ ├─RELOP
+      │ │     │ │ │ └─Exp (7)
+      │ │     │ │ │   └─INT : 100
+      │ │     │ │ ├─RP
+      │ │     │ │ └─Stmt (8)
+      │ │     │ │   └─CompSt (8)
+      │ │     │ │     ├─LC
+      │ │     │ │     ├─DefList (9)
+      │ │     │ │     │ └─Def (9)
+      │ │     │ │     │   ├─Specifier (9)
+      │ │     │ │     │   │ └─TYPE
+      │ │     │ │     │   ├─DecList (9)
+      │ │     │ │     │   │ └─Dec (9)
+      │ │     │ │     │   │   ├─VarDec (9)
+      │ │     │ │     │   │   │ └─ID : k
+      │ │     │ │     │   │   ├─ASSIGNOP
+      │ │     │ │     │   │   └─Exp (9)
+      │ │     │ │     │   │     └─INT : 0
+      │ │     │ │     │   └─SEMI
+      │ │     │ │     ├─StmtList (10)
+      │ │     │ │     │ ├─Stmt (10)
+      │ │     │ │     │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ │ │ │ └─ID : c
+      │ │     │ │     │ │ │ │ │ ├─LB
+      │ │     │ │     │ │ │ │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ │ │ │ └─ID : i
+      │ │     │ │     │ │ │ │ │ └─RB
+      │ │     │ │     │ │ │ │ ├─LB
+      │ │     │ │     │ │ │ │ ├─Exp (10)
+      │ │     │ │     │ │ │ │ │ └─ID : _j
+      │ │     │ │     │ │ │ │ └─RB
+      │ │     │ │     │ │ │ ├─ASSIGNOP
+      │ │     │ │     │ │ │ └─Exp (10)
+      │ │     │ │     │ │ │   └─INT : 0
+      │ │     │ │     │ │ └─SEMI
+      │ │     │ │     │ └─StmtList (11)
+      │ │     │ │     │   ├─Stmt (11)
+      │ │     │ │     │   │ ├─WHILE
+      │ │     │ │     │   │ ├─LP
+      │ │     │ │     │   │ ├─Exp (11)
+      │ │     │ │     │   │ │ ├─Exp (11)
+      │ │     │ │     │   │ │ │ └─ID : k
+      │ │     │ │     │   │ │ ├─RELOP
+      │ │     │ │     │   │ │ └─Exp (11)
+      │ │     │ │     │   │ │   └─INT : 100
+      │ │     │ │     │   │ ├─RP
+      │ │     │ │     │   │ └─Stmt (12)
+      │ │     │ │     │   │   └─CompSt (12)
+      │ │     │ │     │   │     ├─LC
+      │ │     │ │     │   │     ├─StmtList (13)
+      │ │     │ │     │   │     │ ├─Stmt (13)
+      │ │     │ │     │   │     │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ │ │ │ └─ID : c
+      │ │     │ │     │   │     │ │ │ │ │ ├─LB
+      │ │     │ │     │   │     │ │ │ │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ │ │ │ └─ID : i
+      │ │     │ │     │   │     │ │ │ │ │ └─RB
+      │ │     │ │     │   │     │ │ │ │ ├─LB
+      │ │     │ │     │   │     │ │ │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │ │ │ └─ID : _j
+      │ │     │ │     │   │     │ │ │ │ └─RB
+      │ │     │ │     │   │     │ │ │ ├─ASSIGNOP
+      │ │     │ │     │   │     │ │ │ └─Exp (13)
+      │ │     │ │     │   │     │ │ │   ├─Exp (13)
+      │ │     │ │     │   │     │ │ │   │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │   │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │   │ │ │ └─ID : c
+      │ │     │ │     │   │     │ │ │   │ │ ├─LB
+      │ │     │ │     │   │     │ │ │   │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │   │ │ │ └─ID : i
+      │ │     │ │     │   │     │ │ │   │ │ └─RB
+      │ │     │ │     │   │     │ │ │   │ ├─LB
+      │ │     │ │     │   │     │ │ │   │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │   │ │ └─ID : _j
+      │ │     │ │     │   │     │ │ │   │ └─RB
+      │ │     │ │     │   │     │ │ │   ├─PLUS
+      │ │     │ │     │   │     │ │ │   └─Exp (13)
+      │ │     │ │     │   │     │ │ │     ├─Exp (13)
+      │ │     │ │     │   │     │ │ │     │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │     │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │     │ │ │ └─ID : a
+      │ │     │ │     │   │     │ │ │     │ │ ├─LB
+      │ │     │ │     │   │     │ │ │     │ │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │     │ │ │ └─ID : i
+      │ │     │ │     │   │     │ │ │     │ │ └─RB
+      │ │     │ │     │   │     │ │ │     │ ├─LB
+      │ │     │ │     │   │     │ │ │     │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │     │ │ └─ID : k
+      │ │     │ │     │   │     │ │ │     │ └─RB
+      │ │     │ │     │   │     │ │ │     ├─STAR
+      │ │     │ │     │   │     │ │ │     └─Exp (13)
+      │ │     │ │     │   │     │ │ │       ├─Exp (13)
+      │ │     │ │     │   │     │ │ │       │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │       │ │ └─ID : b
+      │ │     │ │     │   │     │ │ │       │ ├─LB
+      │ │     │ │     │   │     │ │ │       │ ├─Exp (13)
+      │ │     │ │     │   │     │ │ │       │ │ └─ID : k
+      │ │     │ │     │   │     │ │ │       │ └─RB
+      │ │     │ │     │   │     │ │ │       ├─LB
+      │ │     │ │     │   │     │ │ │       ├─Exp (13)
+      │ │     │ │     │   │     │ │ │       │ └─ID : _j
+      │ │     │ │     │   │     │ │ │       └─RB
+      │ │     │ │     │   │     │ │ └─SEMI
+      │ │     │ │     │   │     │ └─StmtList (14)
+      │ │     │ │     │   │     │   └─Stmt (14)
+      │ │     │ │     │   │     │     ├─Exp (14)
+      │ │     │ │     │   │     │     │ ├─Exp (14)
+      │ │     │ │     │   │     │     │ │ └─ID : k
+      │ │     │ │     │   │     │     │ ├─ASSIGNOP
+      │ │     │ │     │   │     │     │ └─Exp (14)
+      │ │     │ │     │   │     │     │   ├─Exp (14)
+      │ │     │ │     │   │     │     │   │ └─ID : k
+      │ │     │ │     │   │     │     │   ├─PLUS
+      │ │     │ │     │   │     │     │   └─Exp (14)
+      │ │     │ │     │   │     │     │     └─INT : 1
+      │ │     │ │     │   │     │     └─SEMI
+      │ │     │ │     │   │     └─RC
+      │ │     │ │     │   └─StmtList (16)
+      │ │     │ │     │     └─Stmt (16)
+      │ │     │ │     │       ├─Exp (16)
+      │ │     │ │     │       │ ├─Exp (16)
+      │ │     │ │     │       │ │ └─ID : _j
+      │ │     │ │     │       │ ├─ASSIGNOP
+      │ │     │ │     │       │ └─Exp (16)
+      │ │     │ │     │       │   ├─Exp (16)
+      │ │     │ │     │       │   │ └─ID : _j
+      │ │     │ │     │       │   ├─PLUS
+      │ │     │ │     │       │   └─Exp (16)
+      │ │     │ │     │       │     └─INT : 1
+      │ │     │ │     │       └─SEMI
+      │ │     │ │     └─RC
+      │ │     │ └─StmtList (18)
+      │ │     │   └─Stmt (18)
+      │ │     │     ├─Exp (18)
+      │ │     │     │ ├─Exp (18)
+      │ │     │     │ │ └─ID : i
+      │ │     │     │ ├─ASSIGNOP
+      │ │     │     │ └─Exp (18)
+      │ │     │     │   ├─Exp (18)
+      │ │     │     │   │ └─ID : i
+      │ │     │     │   ├─PLUS
+      │ │     │     │   └─Exp (18)
+      │ │     │     │     └─INT : 1
+      │ │     │     └─SEMI
+      │ │     └─RC
+      │ └─StmtList (21)
+      │   ├─Stmt (21)
+      │   │ ├─Exp (21)
+      │   │ │ ├─Exp (21)
+      │   │ │ │ └─ID : i
+      │   │ │ ├─ASSIGNOP
+      │   │ │ └─Exp (21)
+      │   │ │   └─INT : 0
+      │   │ └─SEMI
+      │   └─StmtList (22)
+      │     ├─Stmt (22)
+      │     │ ├─WHILE
+      │     │ ├─LP
+      │     │ ├─Exp (22)
+      │     │ │ ├─Exp (22)
+      │     │ │ │ └─ID : i
+      │     │ │ ├─RELOP
+      │     │ │ └─Exp (22)
+      │     │ │   └─INT : 100
+      │     │ ├─RP
+      │     │ └─Stmt (23)
+      │     │   └─CompSt (23)
+      │     │     ├─LC
+      │     │     ├─DefList (24)
+      │     │     │ └─Def (24)
+      │     │     │   ├─Specifier (24)
+      │     │     │   │ └─TYPE
+      │     │     │   ├─DecList (24)
+      │     │     │   │ └─Dec (24)
+      │     │     │   │   ├─VarDec (24)
+      │     │     │   │   │ └─ID : _j
+      │     │     │   │   ├─ASSIGNOP
+      │     │     │   │   └─Exp (24)
+      │     │     │   │     └─INT : 0
+      │     │     │   └─SEMI
+      │     │     ├─StmtList (25)
+      │     │     │ └─Stmt (25)
+      │     │     │   ├─WHILE
+      │     │     │   ├─LP
+      │     │     │   ├─Exp (25)
+      │     │     │   │ ├─Exp (25)
+      │     │     │   │ │ └─ID : _j
+      │     │     │   │ ├─RELOP
+      │     │     │   │ └─Exp (25)
+      │     │     │   │   └─INT : 100
+      │     │     │   ├─RP
+      │     │     │   └─Stmt (25)
+      │     │     │     ├─Exp (25)
+      │     │     │     │ ├─ID : write
+      │     │     │     │ ├─LP
+      │     │     │     │ ├─Args (25)
+      │     │     │     │ │ └─Exp (25)
+      │     │     │     │ │   ├─Exp (25)
+      │     │     │     │ │   │ ├─Exp (25)
+      │     │     │     │ │   │ │ └─ID : c
+      │     │     │     │ │   │ ├─LB
+      │     │     │     │ │   │ ├─Exp (25)
+      │     │     │     │ │   │ │ └─ID : i
+      │     │     │     │ │   │ └─RB
+      │     │     │     │ │   ├─LB
+      │     │     │     │ │   ├─Exp (25)
+      │     │     │     │ │   │ └─ID : _j
+      │     │     │     │ │   └─RB
+      │     │     │     │ └─RP
+      │     │     │     └─SEMI
+      │     │     └─RC
+      │     └─StmtList (28)
+      │       └─Stmt (28)
+      │         ├─RETURN
+      │         ├─Exp (28)
+      │         │ └─INT : 0
+      │         └─SEMI
+      └─RC
+
+==========================
+
+

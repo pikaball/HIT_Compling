@@ -1,0 +1,30 @@
+#!/bin/bash
+
+output_file=${1:-/dev/stdout}
+test_dir="test"
+
+> "$output_file"
+
+for file in $test_dir/*; do
+    filename=$(basename "$file")
+
+    echo "[$filename]" >> "$output_file"
+    echo "==========================" >> "$output_file"
+
+    cat -n "$file" >> "$output_file"
+    echo "" >> "$output_file"
+
+    echo "--------------------------" >> "$output_file"
+
+    echo "[parser output]" >> "$output_file"
+    echo "" >> "$output_file"
+    ./parser "$file" >> "$output_file"
+    echo "" >> "$output_file"
+
+    echo "==========================" >> "$output_file"
+
+    echo "" >> "$output_file"
+    echo "" >> "$output_file"
+done
+
+echo "Run test finish."
